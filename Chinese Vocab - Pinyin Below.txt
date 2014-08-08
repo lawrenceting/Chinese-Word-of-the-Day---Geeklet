@@ -1,0 +1,56 @@
+##################################################################
+# HSK vocabulary words (level 1 to 6)
+##################################################################
+# HSK vocabulary level 1 words
+	# "http://www.mdbg.net/chindict/chindict_feed.php?feed=hsk_1_h"
+# HSK vocabulary level 2 words
+	# "http://www.mdbg.net/chindict/chindict_feed.php?feed=hsk_2_h"
+# HSK vocabulary level 3 words
+	# "http://www.mdbg.net/chindict/chindict_feed.php?feed=hsk_3_h"
+# HSK vocabulary level 4 words
+	# "http://www.mdbg.net/chindict/chindict_feed.php?feed=hsk_4_h"
+# HSK vocabulary level 5 words
+	# "http://www.mdbg.net/chindict/chindict_feed.php?feed=hsk_5_h"
+# HSK vocabulary level 6 words
+	# "http://www.mdbg.net/chindict/chindict_feed.php?feed=hsk_6_h"
+# HSK vocabulary words (all levels)
+	# "http://www.mdbg.net/chindict/chindict_feed.php?feed=hsk_h"
+
+
+##################################################################
+# Initialise Variables
+##################################################################
+URL="http://www.mdbg.net/chindict/chindict_feed.php?feed=hsk_1_h"
+maxLength="50"
+start="3"
+end="9"
+
+##################################################################
+# Get RSS
+##################################################################
+curl --silent "$URL" | 
+			grep -E '(<title>|<summary type=\"html\">&lt;div&gt;&lt;strong&gt;)' |
+			tail -20 | 
+			sed -e :a -e '$!N;s/\n//;ta' | 
+			sed -e 's/<title>/\
+<title>/g' | 
+sed -e 's/<\/title>/<\/title>\
+	/g' | 
+	sed -e 's/<\/summary>/<\/summary>\
+	/g' | 
+	sed -e 's/<title>//' | 
+	sed -e 's/<\/title>//' | 
+	sed -e 's/	        <summary type="html">&lt;div&gt;&lt;strong&gt;//'  | 
+	sed -e 's/&lt;\/strong&gt;//' | 
+	sed -e 's/&lt;\/div&gt;//' | 
+	sed -e 's/<\/summary>//' | 
+	sed -e 's/	//' | 
+	head -30 | 
+	tail -29 |
+cut -c 1-$maxLength
+
+##################################################################
+# Understanding the script
+##################################################################
+# grep -E '(<title>|<head>)' means get only lines with <title> and <head># head -10 means 10 lines from the top# tail -10 means 10 lines from the bottom# sed -e :a -e '$!N;s/\\n//;ta'means return all "Next Lines"# sed -e 's/<title>/\\PRESS RETURN<title>/g' means add next line before <title># sed -e 's/<\\/title>/<\\/title>\\PRESS RETURN/g' means add next line after </title># sed -e 's/<\\/title>//' means remove </title>
+# cut -c 1-$maxLength means limit length of line to maxLength characters

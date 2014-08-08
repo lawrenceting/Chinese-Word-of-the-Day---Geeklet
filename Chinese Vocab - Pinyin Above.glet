@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BackgroundColor</key>
+	<data>
+	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMDhAJm
+	ZgCDmpmZPoY=
+	</data>
+	<key>Command</key>
+	<string>##################################################################
+# HSK vocabulary words (level 1 to 6)
+##################################################################
+# HSK vocabulary level 1 words
+	# "http://www.mdbg.net/chindict/chindict_feed.php?feed=hsk_1"
+# HSK vocabulary level 2 words
+	# "http://www.mdbg.net/chindict/chindict_feed.php?feed=hsk_2"
+# HSK vocabulary level 3 words
+	# "http://www.mdbg.net/chindict/chindict_feed.php?feed=hsk_3"
+# HSK vocabulary level 4 words
+	# "http://www.mdbg.net/chindict/chindict_feed.php?feed=hsk_4"
+# HSK vocabulary level 5 words
+	# "http://www.mdbg.net/chindict/chindict_feed.php?feed=hsk_5"
+# HSK vocabulary level 6 words
+	# "http://www.mdbg.net/chindict/chindict_feed.php?feed=hsk_6"
+# HSK vocabulary words (all levels)
+	# "http://www.mdbg.net/chindict/chindict_feed.php?feed=hsk"
+
+##################################################################
+# Initialise Variables
+##################################################################
+URL="http://www.mdbg.net/chindict/chindict_feed.php?feed=hsk_1"
+maxLength="50"
+start="3"
+end="9"
+
+##################################################################
+# Get RSS
+##################################################################
+curl --silent "$URL" | 
+grep -E '(&lt;title&gt;|&lt;summary type="html"&gt;&amp;lt;div&amp;gt;)'|
+tail -20 | 
+sed -e :a -e '$!N;s/\n//;ta' | 
+
+sed -e 's/&lt;title&gt;/\
+&lt;title&gt;/g' |
+
+sed -e 's/&lt;summary/\
+&lt;summary/g' | 
+
+sed -e 's/&lt;\/summary&gt;/&lt;\/summary&gt;\
+/g' |
+
+sed -e 's/&lt;title&gt;//' |
+sed -e 's/&lt;\/title&gt;//' |
+sed -e 's/&lt;summary type="html"&gt;&amp;lt;div&amp;gt;//' | 
+sed -e 's/&amp;lt;\/div&amp;gt;//' | 
+sed -e 's/&lt;\/summary&gt;//' |
+head -30 | 
+tail -29 |
+sed -e 's/	//' | 
+cut -c 1-$maxLength
+
+##################################################################
+# Understanding the script
+##################################################################
+# grep -E '(&lt;title&gt;|&lt;head&gt;)' means get only lines with &lt;title&gt; and &lt;head&gt;# head -10 means 10 lines from the top# tail -10 means 10 lines from the bottom# sed -e :a -e '$!N;s/\\n//;ta'means return all "Next Lines"# sed -e 's/&lt;title&gt;/\\PRESS RETURN&lt;title&gt;/g' means add next line before &lt;title&gt;# sed -e 's/&lt;\\/title&gt;/&lt;\\/title&gt;\\PRESS RETURN/g' means add next line after &lt;/title&gt;# sed -e 's/&lt;\\/title&gt;//' means remove &lt;/title&gt;
+# cut -c 1-$maxLength means limit length of line to maxLength characters#</string>
+	<key>DisplayStatusImage</key>
+	<false/>
+	<key>DropShadow</key>
+	<false/>
+	<key>FailureImage</key>
+	<data>
+	TU0AKgAABAj///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANAAAAGgAAACAAAAAaAAAA
+	DQAAAAAAAAAAAAAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAgAAQFYGBYWqyso
+	KOExLy/9Kygo4RgWFqoAAQFXAAAACAAAAAAAAAAAAAAAAP///wAAAAAAAAAAAAAAAAgG
+	BgZ8Rz4+8qWXl//c09P/6+Tl/93T0/+ll5f/Rz4+8gYGBnwAAAAIAAAAAAAAAAD///8A
+	AAAAAAAAAAQHAgJkSS0t9Kt9ff/ct7j/7NHS/+7T0//s0dL/3be4/6t9ff9JLS30BwIC
+	ZQAAAAUAAAAA////AAAAAAAAAAAmLhAQzJA+P/+1TEv/xmNe/8twav/LcGr/y3Bq/8Zj
+	Xf+0TEv/kD4//y4QEMwAAAAmAAAAAP///wAAAAAABgAATmAZGvitMi//uSwh/8E+Mf/H
+	TED/yU9D/8hNQP/DPjL/uiwi/64xL/9gGRr4BwAATQAAAAD///8AAAAAARUAAGiJGBr/
+	wzgx/8tCNP/TV0n/3WZa/+BqXf/eaFr/1VhL/85DNP/GOTL/ihga/xYAAGcAAAAB////
+	AAAAAAkYAABslRoW/9JNQP/dYFL/63Jm//KAdv/2hXv/9IF3/+10Zv/gYVP/1k5B/5Ya
+	Fv8YAABrAAAACP///wAAAAANDAAAY4UZEu/iXU3/8Hhr//yFef/+lYn//puP//+Xiv/8
+	h3r/8Xlr/+ZdTv+HGRLwDQAAZAAAAAv///8AAAAADwAAAE5aDAfL4FZI//6LgP//mI7/
+	/qSY//+rnv/+p5r//5qP//+Ngf/nWEn/Ww0HywAAAE0AAAAN////AAAAAAwAAAAyDwAA
+	jJInH+z/gHL//6qe//+4rP//vrL//7uu//+soP//g3X/lioh7BEAAIsAAAAzAAAADP//
+	/wAAAAAFAAAAIAAAAF0dAACpkTUq6dt2Z/z6n5D//7Sj//qhkv/bd2r8kTYr6R4AAKoA
+	AABcAAAAIAAAAAX///8AAAAAAQAAAA0AAAAyAAAAZwYAAKI0DgrIYi4l2XlANeJiLiXZ
+	NA4KxwYAAKEAAABoAAAAMwAAAA0AAAAB////AAAAAAAAAAADAAAAEQAAADQAAABdAAAA
+	fAAAAI8AAACVAAAAjgAAAHsAAABbAAAANAAAABIAAAADAAAAAP///wAAAAAAAAAAAAAA
+	AAMAAAAOAAAAIQAAADYAAABGAAAATAAAAEUAAAA2AAAAIgAAAA4AAAAEAAAAAAAAAAD/
+	//8AAAAAAAAAAAAAAAAAAAAAAQAAAAUAAAALAAAAEAAAABMAAAARAAAACwAAAAUAAAAB
+	AAAAAAAAAAAAAAAAAA0BAAADAAAAAQAQAAABAQADAAAAAQAQAAABAgADAAAABAAABKoB
+	AwADAAAAAQABAAABBgADAAAAAQACAAABEQAEAAAAAQAAAAgBEgADAAAAAQABAAABFQAD
+	AAAAAQAEAAABFgADAAAAAQAQAAABFwAEAAAAAQAABAABHAADAAAAAQABAAABUgADAAAA
+	AQACAAABUwADAAAABAAABLIAAAAAAAgACAAIAAgAAQABAAEAAQ==
+	</data>
+	<key>FontFamily</key>
+	<string>LucidaGrande-Bold</string>
+	<key>FontSize</key>
+	<real>12</real>
+	<key>ForceCR</key>
+	<true/>
+	<key>GeekletFrame</key>
+	<string>{{373.23828125, 445.38671875}, {336, 439}}</string>
+	<key>HasShadow</key>
+	<false/>
+	<key>Identifier</key>
+	<string>org.tynsoe.geeklet.shell</string>
+	<key>KeepOnTop</key>
+	<false/>
+	<key>Name</key>
+	<string>Chinese Vocab - Pinyin Above</string>
+	<key>RefreshInterval</key>
+	<integer>8640</integer>
+	<key>RightToLeft</key>
+	<false/>
+	<key>SetLocale</key>
+	<true/>
+	<key>ShadowBlur</key>
+	<real>0.0</real>
+	<key>ShadowColor</key>
+	<data>
+	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
+	ZmZmAAAAg6uqqj6G
+	</data>
+	<key>ShadowSize</key>
+	<string>{2.5003775855252739, -2.5003775855252743}</string>
+	<key>StatusImagePosition</key>
+	<integer>2</integer>
+	<key>SuccessImage</key>
+	<data>
+	TU0AKgAABAj///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAANAAAAGgAAACAAAAAaAAAA
+	DQAAAAAAAAAAAAAAAAAAAAAAAAAA////AAAAAAAAAAAAAAAAAAAAAAgBAQFYFhUWqygn
+	KOEvLi/9KCco4RYVFqsBAQFYAAAACAAAAAAAAAAAAAAAAP///wAAAAAAAAAAAAAAAAgG
+	AwZ8Pj0+8peYl//S0tP/4+Tl/9LS0/+XmJf/Pj0+8gYDBnwAAAAIAAAAAAAAAAD///8A
+	AAAAAAAAAAUDAQJlLTEt9HqRff+40Ln/1efT/9jo1f/V59P/uNG5/3qRff8tMS30AwEC
+	ZQAAAAUAAAAA////AAAAAAAAAAAmEBYQyz1tP/9Xm03/eLJX/4e6YP+HuWL/h7pg/3ix
+	V/9Wmk3/PWw//xAWEMsAAAAmAAAAAP///wAAAAAAAAAAThY8Gvc8jjD/TJwb/2CnHf9r
+	ryz/bLEv/2ywLP9iqR7/TJ4b/zyQMP8WPBr3AAAATQAAAAD///8AAAAAAQAIAGgeYRv/
+	VaUq/2WvIP91uzb/gsZI/4bIS/+DyEj/d743/2exIP9WqSr/HmIb/wAIAGcAAAAB////
+	AAAAAAgADABsJ3MY/3C6Nv9/xz3/kNNT/57dYv+i32f/n99k/5HWVP+AyD3/cr02/yd0
+	GP8ADQBsAAAACf///wAAAAAMAAYAYydqEPB/yD7/lNhW/6PlZv+x8Xb/uPd8/7P0eP+k
+	6Gf/ldpX/4DLQP8maxDvAAYAYwAAAAv///8AAAAADwAAAE4XRwXLd8Y5/6foa/+393v/
+	wv6F/8r/i//F/4b/uPt8/6rubP95yTr/F0kFygAAAEwAAAAN////AAAAAAwAAAAyAAwA
+	jEB6GOyh7Vz/yP+J/9X/mP/b/5//2P+b/83/i/+m9F3/Qn4X7AEMAIsAAAAzAAAADP//
+	/wAAAAAFAAAAIAAAAF4GFQCpTIQc6ZbZU/zC+3n/2P+L/8T6fP+a21b8UIkd6AYXAKkA
+	AABcAAAAIAAAAAX///8AAAAAAQAAAA0AAAAzAAAAZwAFAKIaMwTHQGIZ2FV5JuFAYhnZ
+	GzQEyAAFAKAAAABnAAAAMgAAAA0AAAAB////AAAAAAAAAAADAAAAEQAAADQAAABdAAAA
+	ewAAAI8AAACWAAAAjwAAAHsAAABcAAAAMwAAABEAAAADAAAAAP///wAAAAAAAAAAAAAA
+	AAMAAAAOAAAAIQAAADYAAABGAAAATAAAAEcAAAA2AAAAIQAAAA0AAAAEAAAAAAAAAAD/
+	//8AAAAAAAAAAAAAAAAAAAAAAQAAAAUAAAALAAAAEAAAABMAAAASAAAADAAAAAUAAAAB
+	AAAAAAAAAAAAAAAAAA0BAAADAAAAAQAQAAABAQADAAAAAQAQAAABAgADAAAABAAABKoB
+	AwADAAAAAQABAAABBgADAAAAAQACAAABEQAEAAAAAQAAAAgBEgADAAAAAQABAAABFQAD
+	AAAAAQAEAAABFgADAAAAAQAQAAABFwAEAAAAAQAABAABHAADAAAAAQABAAABUgADAAAA
+	AQACAAABUwADAAAABAAABLIAAAAAAAgACAAIAAgAAQABAAEAAQ==
+	</data>
+	<key>TextAlignment</key>
+	<integer>0</integer>
+	<key>TextColor</key>
+	<data>
+	BAtzdHJlYW10eXBlZIHoA4QBQISEhAdOU0NvbG9yAISECE5TT2JqZWN0AIWEAWMBhARm
+	ZmZmAQEBg5qZGT+G
+	</data>
+	<key>TextStrikethrough</key>
+	<integer>0</integer>
+	<key>TextUnderline</key>
+	<integer>0</integer>
+</dict>
+</plist>
